@@ -87,5 +87,28 @@ namespace SMI.Server.Controllers
             }).ToList();
         }
 
+        //TIPOS DE DOCUMENTO
+        [HttpGet("tipos-documento")]
+        public async Task<ActionResult<IEnumerable<TipoDocumentoDTO>>> GetTiposDocumento()
+        {
+            var tiposDocumento = await _context.TipoDocumentos.ToListAsync();
+            return tiposDocumento.Select(td => new TipoDocumentoDTO
+            {
+                id = td.id,
+                nombre = td.nombre
+            }).ToList();
+        }
+
+        //TIPOS PROFESIONALES SALUD
+        public async Task<ActionResult<IEnumerable<TipoProfesionalSaludDTO>>> GetTiposProfesionalesSalud()
+        {
+            var tiposProfesionalesSalud = await _context.TipoProfesionalSaluds.ToListAsync();
+            return tiposProfesionalesSalud.Select(tps => new TipoProfesionalSaludDTO
+            {
+                id = tps.id,
+                nombre = tps.nombre
+            }).ToList();
+        }
+
     }
 }
